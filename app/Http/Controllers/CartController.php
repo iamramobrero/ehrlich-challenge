@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $cartID = $request->cartID;
+
+        $cartItems = CartItem::where('cart_id', $cartID)
+                    ->select(['cart_items.id','name','image','price_regular','price_sale','quantity'])
+                    ->leftJoin('products','products.id', '=', 'cart_items.product_id')
+                    ->get();
+
+
+        return response()->json($cartItems);
     }
 
     public function create()
