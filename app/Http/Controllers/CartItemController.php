@@ -7,79 +7,59 @@ use Illuminate\Http\Request;
 
 class CartItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $cart_id = $request->cartID;
+        $product_id = $request->productID;
+
+        // check if item is already in the cart
+        $cartItem = CartItem::where('cart_id', $cart_id)->where('product_id', $product_id)->first();
+
+        if($cartItem){
+            $cartItem->quantity++;
+        }
+        else{
+            $cartItem = new CartItem();
+            $cartItem->cart_id = $cart_id;
+            $cartItem->product_id = $product_id;
+            $cartItem->quantity = 1;
+        }
+
+        $cartItem->save();
+
+        return $cartItem;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
     public function show(CartItem $cartItem)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
     public function edit(CartItem $cartItem)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, CartItem $cartItem)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(CartItem $cartItem)
     {
-        //
+        $cartItem->delete();
+        return response('',200);
     }
 }
