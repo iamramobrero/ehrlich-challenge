@@ -17,6 +17,7 @@ class CreateCartItemsTable extends Migration
             $table->id();
             $table->integer('cart_id');
             $table->integer('product_id');
+            $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
         });
