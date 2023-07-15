@@ -1,0 +1,424 @@
+body {
+  background: #ebebeb;
+}
+
+#container {
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  background-color: #FFF;
+}
+
+#header {
+  width: 100%;
+  background: #FFF;
+}
+
+#header #main-header {
+  padding: 20px 0;
+}
+
+#header #main-header #left-nav .item {
+  padding: 9px 15px;
+  text-transform: uppercase;
+}
+
+#header #main-header #left-nav .item:first-child {
+  font-weight: 600;
+}
+
+#header #main-header #logo {
+  margin-top: 5px;
+}
+
+#header #main-header #right-nav #cart-count {
+  font-weight: bold;
+  color: #C1272D;
+}
+
+#header #main-header #right-nav li #cart-summary {
+  display: none;
+}
+
+#header #main-header #right-nav li:hover svg path {
+  fill: #C1272D;
+}
+
+#header #main-header #right-nav li:hover #cart-summary {
+  display: block;
+  position: absolute;
+  background: #fff;
+  border: 1px solid rgb(199, 199, 199);
+  right: 0;
+  z-index: 999;
+}
+
+#header #main-header #right-nav li:hover #cart-summary .cart-item img {
+  max-width: 100px;
+}
+
+#header #main-header #right-nav li:hover #cart-summary .btn-checkout {
+  border: 3px solid #000;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+#header #main-header #right-nav li:hover #cart-summary .cart-total h3 {
+  margin: 0;
+  border-top: 2px solid #bbbbbb;
+  padding: 10px;
+  color: #212529;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+#header #main-header #right-nav a {
+  padding: 10px;
+}
+
+#header #sub-header {
+  background: #F2F2F2;
+}
+
+#header #sub-header ul {
+  min-height: 50px;
+}
+
+#header #sub-header li {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+#content #banner img {
+  width: 100%;
+}
+
+#content #site-wide-deals #site-wide-deals-container {
+  max-width: 1300px;
+  height: 150px;
+}
+
+#content #site-wide-deals #site-wide-deals-container > div {
+  text-align: center;
+}
+
+#content #site-wide-deals #site-wide-deals-container .discount {
+  color: #000;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+#content #site-wide-deals #site-wide-deals-container .off {
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+#content #site-wide-deals #site-wide-deals-container p {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+#content #site-wide-deals #site-wide-deals-container .site-wide-deals {
+  display: inline-flex;
+  padding: 10px 20px;
+  align-items: flex-start;
+  gap: 15px;
+  background: #000;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+#content #vip-exclusive {
+  background-image: url(/images/bg-vip.png);
+  background-size: cover;
+}
+
+#content #vip-exclusive .vip-exclusive-wrapper .vip-exclusive-content {
+  max-width: 1250px;
+  height: 75px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+#content #vip-exclusive .vip-exclusive-wrapper .vip-exclusive-content .content-1 {
+  font-size: 32px;
+  font-weight: 800;
+  width: 40%;
+}
+
+#content #vip-exclusive .vip-exclusive-wrapper .vip-exclusive-content .content-2 {
+  font-size: 18px;
+  width: 27%;
+}
+
+#content #vip-exclusive .vip-exclusive-wrapper .vip-exclusive-content .content-3 {
+  width: 33%;
+}
+
+#content #vip-exclusive .vip-exclusive-wrapper .vip-exclusive-content .content-3 a {
+  padding: 10px 20px;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+#content #new-arrivals {
+  height: 400px;
+  background-image: url(/images/bg-new-arrivals.png);
+  background-size: cover;
+}
+
+#content #new-arrivals .new-arrivals-container {
+  height: 100%;
+}
+
+#content #new-arrivals .details {
+  width: 45%;
+}
+
+#content #new-arrivals .details h2 {
+  color: #FFF;
+  font-size: 86px;
+  font-weight: 800;
+  line-height: 86px;
+  /* 100% */
+  text-transform: uppercase;
+}
+
+#content #new-arrivals .details p {
+  color: #FFF;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+#content #new-arrivals .details .shop-now {
+  padding: 10px 20px;
+  background: #FFF;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+#content #trending {
+  padding: 40px 180px 62px 180px;
+  align-items: center;
+  text-align: center;
+}
+
+#content #trending .item {
+  display: inline-flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+}
+
+#content #trending .item p {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: 50px;
+  line-height: 50px;
+}
+
+#content #trending .trending-hashtags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 830px;
+}
+
+#content #trending .trending-hashtags > li {
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid #000;
+  background: #FFF;
+}
+
+#content #trending .trending-hashtags > li > a {
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#content #recently-bought {
+  padding: 40px;
+}
+
+#content #recently-bought .recently-bought-container .item {
+  padding: 20px;
+}
+
+#content #recently-bought .recently-bought-container .item .btn-add-to-cart {
+  border: 3px solid #000000;
+  padding: 10px;
+  background: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#content #recently-bought .recently-bought-container .item .title {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  width: 100%;
+  max-width: 225px;
+  min-height: 35px;
+}
+
+#content #recently-bought .recently-bought-container .item .prices > span {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+  text-align: left;
+}
+
+#content #recently-bought .recently-bought-container .item .prices > span.sale {
+  color: #C1272D;
+  width: 58px;
+}
+
+#content #insta {
+  text-align: center;
+  background: #F2F2F2;
+  padding: 40px;
+}
+
+#content #insta .insta-container {
+  margin-bottom: 40px;
+}
+
+#content #insta .item {
+  padding: 0 20px;
+}
+
+#content #insta .btn-view-all {
+  padding: 10px 20px;
+  background: #000;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#content #checkout-items img {
+  max-width: 100px;
+}
+
+#footer #newsletter {
+  background: #000;
+}
+
+#footer #newsletter .newsletter-container {
+  height: 75px;
+}
+
+#footer #newsletter .subscription-form {
+  margin-top: 20px;
+}
+
+#footer #newsletter .subcription-field {
+  border: none;
+  border-radius: 0;
+}
+
+#footer #newsletter .callout {
+  color: #FFF;
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 75px;
+}
+
+#footer #footer-widgets {
+  padding: 50px 0;
+}
+
+#footer #footer-widgets h5 {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#footer #footer-widgets .list-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#footer #footer-widgets .list-group > li {
+  padding: 10px 0;
+}
+
+#footer #footer-widgets .list-group > li a {
+  color: #000;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+#footer #footer-widgets .social {
+  list-style: none;
+}
+
+#footer #footer-widgets .social > li {
+  display: inline-block;
+}
+
+#footer #footer-widgets .payment-methods {
+  list-style: none;
+}
+
+#footer #footer-widgets .payment-methods > li {
+  display: inline-block;
+}
+
+#footer #footer-bottom {
+  color: #000;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0 0 50px 0;
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: capitalize;
+  padding: 10px 20px 20px 20px;
+}
+
+.subheading {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 20px 20px 20px;
+}
+
+.container {
+  max-width: 1400px;
+}
+
+button i {
+  display: none;
+}
+
+button.loading i {
+  display: block;
+}
+
