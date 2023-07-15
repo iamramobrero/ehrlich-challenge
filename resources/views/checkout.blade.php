@@ -19,7 +19,7 @@
                     <div id="checkout-summary">
 
                     </div>
-
+                    <div id="paypal-button-container" class="d-none"></div>
                 </div>
             </div>
         </div>

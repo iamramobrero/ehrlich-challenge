@@ -129,7 +129,7 @@
                     $('#cart-summary').append(`
                         <div class="cart-item row p-2">
                             <div class="col-12 text-center cart-total">
-                                <h3>$${data.cart.total}</h3>
+                                <h3>$${data.cart.subtotal}</h3>
                             </div>
                         </div>
                         <div class="cart-item row p-2">
@@ -141,29 +141,22 @@
 
                     // checkout summary
 
-                    let discount = 0;
-                    let shipping = 20;
-                    let discountSummary = null;
+                    let discountSummary = '';
                     let checkOutOtal = data.cart.total;
 
-                    if(data.cart.total > 100){
-                        discount = -10;
+                    if(data.cart.discount){
                         discountSummary = `<li class="list-group-item d-flex justify-content-between bg-light">
                                 <div class="text-success">
                                     <h6 class="my-0">Promo code</h6>
                                     <small>EXAMPLECODE</small>
                                 </div>
-                                <span class="text-success">USD ${discount}</span>
+                                <span class="text-success">- USD ${data.cart.discount}</span>
                             </li>`;
-
-                        checkOutOtal += shipping;
-                        checkOutOtal += discount;
                     }
 
-                    $('#checkout-summary').append(`
+                    $('#checkout-summary').html(`
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">Order Summary</span>
-                            <span class="badge badge-secondary badge-pill">3</span>
                         </h4>
                         <ul class="list-group mb-3">
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -171,24 +164,25 @@
                                     <h6 class="my-0">Cart Total</h6>
                                     <small class="text-muted">Cart Total Cost </small>
                                 </div>
-                                <span class="text-muted">USD ${data.cart.total}</span>
+                                <span class="text-muted">USD ${data.cart.subtotal}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
                                     <h6 class="my-0">Shipping Total</h6>
                                     <small class="text-muted">Cart Shipping Cost</small>
                                 </div>
-                                <span class="text-muted">USD ${shipping}</span>
+                                <span class="text-muted">USD ${data.cart.shipping}</span>
                             </li>
                             `+discountSummary+`
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (USD)</span>
-                                <strong>USD ${checkOutOtal}</strong>
+                                <strong>USD ${data.cart.total}</strong>
                             </li>
                         </ul>
-
-                        <div id="paypal-button-container"></div>
                     `);
+
+
+                    $('#paypal-button-container').removeClass('d-none');
 
                 } else {
                     $('#checkout-items').append(`Your cart is empty! <a href="/">Click here to browse our shop!</a>`)
