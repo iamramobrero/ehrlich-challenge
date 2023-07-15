@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,12 +16,35 @@ class CartController extends Controller
         $cartID = $request->cartID;
 
         $cartItems = CartItem::where('cart_id', $cartID)
-                    ->select(['cart_items.id','name','image','price_regular','price_sale','quantity'])
-                    ->leftJoin('products','products.id', '=', 'cart_items.product_id')
-                    ->get();
+        ->select(['cart_items.id','cart_items.product_id','name','image','price_regular','price_sale','quantity'])
+        ->leftJoin('products','products.id', '=', 'cart_items.product_id')
+        ->with('product')
+        ->get();
+
+        $total = 0;
+        $temp = [];
+        foreach($cartItems as $item){
+            $prod = Product::find($item->product_id);
+            $temp[] = [
+                'id' => $item->id,
+                'image' => $item->image,
+                'quantity' => $item->quantity,
+                'name' => $item->name,
+                'price' => $prod->price,
+            ];
+
+            $total += ($item->quantity * $prod->price);
+        }
+
+        $response = [
+            'cart' => [
+                'items' => $temp,
+                'total' => $total,
+            ]
+        ];
 
 
-        return response()->json($cartItems);
+        return response()->json($response);
     }
 
     public function create()
