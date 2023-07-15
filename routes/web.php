@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\HomeController;
+use App\Models\CartItem;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/checkout', [HomeController::class, 'checkout']);
+Route::post('/checkout', [HomeController::class, 'doCheckout']);
+Route::get('/data/trending-items', [HomeController::class, 'trending_items']);
+Route::get('/data/recent-purchases', [HomeController::class, 'recent_purchases']);
+
+Route::resource('cart-items', CartItemController::class);
+Route::resource('cart', CartController::class);
+
+
