@@ -21,7 +21,7 @@ class CartController extends Controller
         ->with('product')
         ->get();
 
-        $total = 0;
+        $subtotal = 0;
         $temp = [];
         foreach($cartItems as $item){
             $prod = Product::find($item->product_id);
@@ -30,16 +30,23 @@ class CartController extends Controller
                 'image' => $item->image,
                 'quantity' => $item->quantity,
                 'name' => $item->name,
-                'price' => $prod->price,
+                'price' => number_format($prod->price,2),
             ];
 
-            $total += ($item->quantity * $prod->price);
+            $subtotal += ($item->quantity * $prod->price);
         }
+
+        $discount = ($subtotal > 100) ? 10:0;
+        $shipping = 25;
+        $total = (($subtotal + $shipping) - $discount);
 
         $response = [
             'cart' => [
                 'items' => $temp,
-                'total' => $total,
+                'subtotal' => number_format($subtotal,2),
+                'total' => number_format($total,2),
+                'shipping' => number_format($shipping,2),
+                'discount' => number_format($discount,2),
             ]
         ];
 
