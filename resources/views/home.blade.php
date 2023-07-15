@@ -1,142 +1,102 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-
-    <div id="recent-purchases" class="row">
+    @include('head')
+    <body>
+    <div id="container">
+    @include('header')
+    <div id="content">
+        <div id="banner">
+            <a href="#">
+                <img src="/images/hero-1.png">
+            </a>
+        </div>
+        <div id="site-wide-deals">
+            <div id="site-wide-deals-container" class="d-flex justify-content-between align-items-center mx-auto">
+                <div>
+                    <div>
+                        <span class="discount">$5</span>
+                        <span class="off">OFF</span>
+                    </div>
+                    <p>on orders above $50</p>
+                </div>
+                <div>
+                    <div>
+                        <span class="discount">$15</span>
+                        <span class="off">OFF</span>
+                    </div>
+                    <p>on orders above $75</p>
+                </div>
+                <div>
+                    <div>
+                        <span class="discount">$20</span>
+                        <span class="off">OFF</span>
+                    </div>
+                    <p>on orders above $150</p>
+                </div>
+                <div>
+                    <div>
+                        <span class="discount">$30</span>
+                        <span class="off">OFF</span>
+                    </div>
+                    <p>on orders above $200</p>
+                </div>
+                <div>
+                    <a class="site-wide-deals" href="#">check out all site-wide deals</a>
+                </div>
+            </div>
+        </div>
+        <div id="vip-exclusive">
+            <div class="vip-exclusive-wrapper mx-auto">
+                <div class="vip-exclusive-content d-flex justify-content-between align-items-center mx-auto">
+                    <div class="content-1">black friday exclusive</div>
+                    <div class="content-2">free shipping on all orders for VIP 2 and up!</div>
+                    <div class="content-3 text-center"><a href="#">SHOP NOW</a></div>
+                </div>
+            </div>
+        </div>
+        <div id="trending">
+            <div class="heading">now trending</div>
+            <p>See what everyone’s wearing right now</p>
+            <div class="trending-container d-flex justify-content-between flex-wrap"></div>
+            <div class="trending-hashtags-container">
+                <ul class="trending-hashtags d-flex justify-content-between mx-auto">
+                    <li><a href="#">#Thanksgiving</a></li>
+                    <li><a href="#">#NewYears</a></li>
+                    <li><a href="#">#Knitted</a></li>
+                    <li><a href="#">#Pajamas</a></li>
+                    <li><a href="#">#WFH</a></li>
+                    <li><a href="#">#FallFashion</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="new-arrivals">
+            <div class="new-arrivals-container d-flex justify-content-end flex-wrap">
+                <div class="details align-self-center">
+                    <h2>NEW ARRIVALS</h2>
+                    <p>Get ready for the holidays with us!</p>
+                    <a href="#" class="shop-now">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+        <div id="recently-bought">
+            <div class="heading text-center">recently bought</div>
+            <div class="recently-bought-container d-flex justify-content-between flex-wrap"></div>
+        </div>
+        <div id="insta" class="text-center">
+            <div class="heading">Your Next Inspo</div>
+            <p class="subheading">Checkout who’s wearing what by using #THREADEDInspo on Instagram</p>
+            <div class="insta-container d-flex justify-content-between align-items-center  flex-wrap">
+                <div class="item"><img src="/images/insta-1.png"></div>
+                <div class="item"><img src="/images/insta-2.png"></div>
+                <div class="item"><img src="/images/insta-3.png"></div>
+                <div class="item"><img src="/images/insta-4.png"></div>
+                <div class="item"><img src="/images/insta-5.png"></div>
+            </div>
+            <a href="#" class="btn-view-all">VIEW ALL POST</a>
+        </div>
     </div>
-    <hr>
-    <div id="cart-summary">
+    @include('footer')
     </div>
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script>
-        $( document ).ready(function() {
-
-            // setup csrf token for backend request validation
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            });
-
-            let cartID;
-
-            // initialize new cart
-            initializeCart();
-
-            // element event handlers
-            $(document).on('click','.btn-add-to-cart',function(){
-                var productID = $(this).data('id');
-                addCartItem(productID);
-            });
-
-            $(document).on('click','.btn-remove-from-cart',function(){
-                var cartItemID = $(this).data('id');
-                removeCartItem(cartItemID);
-            });
-
-
-            // methods
-            function getCartID(){
-                return localStorage.getItem('cartID');
-            }
-
-            function initializeCart(){
-                cartID = getCartID();
-
-                // if there is no cartID, initialize
-                if(!cartID){
-                    $.post( "{{ route("cart.store") }}", function( data ) {
-                        localStorage.setItem('cartID', data);
-                    });
-                }
-
-                getCartItems();
-                getRecentPurchases();
-            }
-
-            function getCartItems(){
-                $.get( "/cart?cartID="+getCartID(), function( data ) {
-                    $('#cart-summary').html('');
-                    data.forEach(item => {
-                        $('#cart-summary').append(`
-                            <div class="cart-item">
-                                <img src="/images/${item.image}" title="${item.name}"/>
-                                <p>${item.name} x ${item.quantity}</p>
-                                <p><span>${item.price_sale}</span><span><strike>${item.price_regular}</strike></span></p>
-                                <button type="button" class="btn-remove-from-cart" data-id="${item.id}">Remove</>
-                            </div>
-                        `)
-                    });
-                });
-            }
-
-            function addCartItem(productID){
-                $.post( '/cart-items', {
-                    'cartID' : getCartID(),
-                    'productID' : productID,
-                } ,function( response ) {
-                    getCartItems();
-                });
-            }
-
-            function removeCartItem(cartItemID){
-                if(cartItemID){
-                    $.ajax({
-                        url: '/cart-items/'+cartItemID,
-                        type: 'DELETE',
-                        success: function(response) {
-                            getCartItems();
-                        }
-                    });
-                }
-            }
-
-            function updateCartItemQuantity(cartItemID){
-
-            }
-
-
-
-
-            // function getTrendingItems(){
-            //     $.get( "/data/trending-items", function( data ) {
-            //         console.log(data);
-            //     });
-            // }
-
-            function getRecentPurchases(){
-                $.get( "/data/recent-purchases", function( data ) {
-                    // reset recent purchases container
-                    $('#recent-purchases').html('');
-                    data.forEach(item => {
-                        $('#recent-purchases').append(`
-                            <div class="col col-2 md-recent-item">
-                                <img src="/images/${item.image}" title="${item.name}"/>
-                                <p>${item.name}</p>
-                                <button type="button" class="btn-add-to-cart" data-id="${item.id}">Add to Cart</>
-                            </div>
-                        `)
-                        console.log(item);
-                    });
-                });
-            }
-
-        });
-    </script>
+    @include('scripts')
   </body>
 </html>
